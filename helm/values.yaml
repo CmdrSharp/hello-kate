@@ -36,7 +36,7 @@ mongodb:
       memory: 256Mi
 
   persistence:
-    storageClass: delete-without-pvc
+    storageClass: standard
     size: 512Mi
 
   metrics:
