@@ -26,7 +26,8 @@ module.exports = {
                     ws.send(JSON.stringify({
                         "time": `${new Date().toISOString().replace(/^[^T]+T/g, '').slice(0, -5)}`,
                         "pod": process.env.KUBERNETES_POD_NAME || '-',
-                        "node": process.env.KUBERNETES_NODE_NAME || '-'
+                        "node": process.env.KUBERNETES_NODE_NAME || '-',
+                        "clients": [...wss.clients].length
                     }));
                 }
             }, 1000);
