@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hello-kate.fullname" . }}
+  labels:
+    app: hello-kate-frontend
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: hello-kate-frontend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: hello-kate-frontend
+        release: {{ .Release.Name }}
+    spec:
+      securityContext:
+        runAsUser: {{ .Values.runAsUser }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.deployment.container.image.repository }}:{{ .Values.deployment.container.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.deployment.container.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.deployment.container.port }}
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.deployment.container.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.deployment.container.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          {{- toYaml .Values.deployment.resources | nindent 10 }}
+        env:
+        - name: mongodb
+          value: {{ .Release.Name }}-mongodb
+        - name: mongodb_user
+          value: {{ .Values.mongodb.mongodbUsername }}
+        - name: mongodb_password
+          value: {{ .Values.mongodb.mongodbPassword }}

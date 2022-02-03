@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  mongodb:
+    image: docker.io/bitnami/mongodb:4.2.4-debian-10-r0
+    environment:
+      MONGODB_USERNAME: user
+      MONGODB_PASSWORD: password
+      MONGODB_DATABASE: statistics
+      MONGODB_ROOT_PASSWORD: password123
+    networks:
+      - backend
+    ports:
+      - 27017:27017
+
+  test:
+    image: hello-kate:1.2.0
+    environment:
+      mongodb: mongodb
+      mongodb_user: user
+      mongodb_password: password
+    networks:
+      - backend
+      - proxy
+    depends_on:
+      - mongodb
+
+  proxy:
+    image: nginx:1.15.5-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d:ro
+    networks:
+      - proxy
+    depends_on:
+      - mongodb
+      - test
+
+
+networks:
+  backend:
+  proxy:

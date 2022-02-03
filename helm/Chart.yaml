@@ -1,0 +1,13 @@
+apiVersion: v2
+name: hello-kate
+description: Cluster Test Application for Kubernetes
+
+type: application
+
+version: 1.2.0
+appVersion: 1.2.0
+
+dependencies:
+  - name: mongodb
+    version: ^7.8.10
+    repository: https://charts.helm.sh/stable

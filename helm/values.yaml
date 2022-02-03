@@ -1,0 +1,43 @@
+deployment:
+  replicaCount: 1
+  container:
+    image:
+      repository: "cmdrsharp/hello-kate"
+      tag: ""
+      pullPolicy: IfNotPresent
+    port: 8080
+  
+  nodeSelector:
+    kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
+# --------------
+#  Dependencies
+# --------------
+mongodb:
+  mongodbUsername: testuser
+  mongodbPassword: testpass
+  mongodbDatabase: statistics
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
+
+  persistence:
+    storageClass: delete-without-pvc
+    size: 512Mi
+
+  metrics:
+    enabled: false
