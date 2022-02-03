@@ -48,3 +48,15 @@ spec:
           value: {{ .Values.mongodb.mongodbUsername }}
         - name: mongodb_password
           value: {{ .Values.mongodb.mongodbPassword }}
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: KUBERNETES_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KUBERNETES_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
