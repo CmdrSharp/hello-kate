@@ -11,6 +11,7 @@ const app = express();
 app.use(express.static("public"));
 app.use(cors());
 
+const basePath = process.env.basepath || '';
 const port = process.env.PORT || 8080;
 const server = app.listen(port);
 
@@ -19,7 +20,7 @@ db.init();
 
 let version = JSON.parse(fs.readFileSync('package.json', 'utf-8')).version;
 
-app.get('/', (req, res) => {
+app.get(basePath + '/', (req, res) => {
 	if(wss.ready && db.ready) {
 		res.status(200).render(__dirname + '/resources/index.ejs', {
 			connections: db.totalConnections + 1,
@@ -31,7 +32,7 @@ app.get('/', (req, res) => {
 	}
 });
 
-app.get('/health', (req, res) => {
+app.get(basePath + '/health', (req, res) => {
   if (wss.ready && db.ready) {
     res.status(200).send({ status: 'OK' });
   } else {

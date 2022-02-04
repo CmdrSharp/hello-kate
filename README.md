@@ -16,6 +16,9 @@ Installation is done via Helm.
 helm install --create-namespace --namespace hello-kate-app hello-kate ./helm/
 ```
 
+## Environment flags
+- `basepath`: basepath to prepend to all endpoints
+
 ## Developing
 
 **Requirements**

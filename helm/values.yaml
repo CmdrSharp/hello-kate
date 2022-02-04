@@ -19,6 +19,12 @@ deployment:
       cpu: 100m
       memory: 128Mi
 
+# ---------
+#  Routing
+# ---------
+routing:
+  basepath: &basepath /hello-kate
+
 # --------------
 #  Dependencies
 # --------------
