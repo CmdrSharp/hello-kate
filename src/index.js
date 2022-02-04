@@ -3,16 +3,20 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const os = require("os");
+const path = require("path");
 
 const wss = require('./dist/wss.js');
 const db = require('./db.js');
 
-const app = express();
-app.use(express.static("public"));
-app.use(cors());
-
+// Environment Variables
 const basePath = process.env.basepath || '';
 const port = process.env.PORT || 8080;
+
+const app = express();
+//app.use(express.static("public"));
+app.use(basePath + '/', express.static(path.join(__dirname, 'public')));
+app.use(cors());
+
 const server = app.listen(port);
 
 wss.init(server);

@@ -42,6 +42,8 @@ spec:
         resources:
           {{- toYaml .Values.deployment.resources | nindent 10 }}
         env:
+        - name: basepath
+          value: {{ .Values.routing.basepath }}
         - name: mongodb
           value: {{ .Release.Name }}-mongodb
         - name: mongodb_user

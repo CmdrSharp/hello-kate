@@ -6,7 +6,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: {{ .Values.routing.basepath }}/
+      - path: {{ .Values.routing.basepath }}
         pathType: Prefix
         backend:
           service:
