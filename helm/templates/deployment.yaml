@@ -6,7 +6,7 @@ metadata:
     app: hello-kate-frontend
     release: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.deployment.replicaCount }}
   selector:
     matchLabels:
       app: hello-kate-frontend
