@@ -16,6 +16,8 @@ Installation is done via Helm.
 helm install --create-namespace --namespace hello-kate-app hello-kate ./helm/
 ```
 
+The default path after installation is http://your-ingress-ip/hello-kate
+
 ## Environment flags
 - `basepath`: basepath to prepend to all endpoints
 
@@ -30,7 +32,7 @@ helm install --create-namespace --namespace hello-kate-app hello-kate ./helm/
 **Updating the version**
 For simplicity, the `set-version.sh` script updates version tags where necessary.
 ```
-./set-verison.sh 1.3.0
+./set-version.sh 1.3.0
 ```
 
 **To start a build**
