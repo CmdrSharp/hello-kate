@@ -19,6 +19,13 @@ spec:
     spec:
       securityContext:
         runAsUser: {{ .Values.runAsUser }}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app: hello-kate-frontend
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.deployment.container.image.repository }}:{{ .Values.deployment.container.image.tag | default .Chart.AppVersion }}"
@@ -31,13 +38,13 @@ spec:
           httpGet:
             path: {{ .Values.routing.basepath }}/health
             port: {{ .Values.deployment.container.port }}
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
         readinessProbe:
           httpGet:
             path: {{ .Values.routing.basepath }}/health
             port: {{ .Values.deployment.container.port }}
-          initialDelaySeconds: 5
+          initialDelaySeconds: 30
           periodSeconds: 10
         resources:
           {{- toYaml .Values.deployment.resources | nindent 10 }}
