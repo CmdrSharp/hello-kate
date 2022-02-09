@@ -14,7 +14,7 @@ services:
       - 27017:27017
 
   test:
-    image: hello-kate:1.2.4
+    image: hello-kate:1.3.0
     environment:
       mongodb: mongodb
       mongodb_user: user
