@@ -38,46 +38,54 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
-    var loc = window.location, rel_uri;
-    const time = document.getElementById('time');
-    const pod = document.getElementById('pod');
-    const node = document.getElementById('node');
-    const clients = document.getElementById('clients');
+    function startSocket() {
+      var loc = window.location, rel_uri;
+      const time = document.getElementById('time');
+      const pod = document.getElementById('pod');
+      const node = document.getElementById('node');
+      const clients = document.getElementById('clients');
 
-    rel_uri = "ws:";
+      rel_uri = "ws:";
 
-    if(loc.protocol === "https:") {
-      rel_uri = "wss:";
+      if(loc.protocol === "https:") {
+        rel_uri = "wss:";
+      }
+
+      rel_uri += "//" + loc.host;
+      rel_uri += loc.pathname + "/to/ws";
+
+      var ws = new WebSocket(rel_uri);
+      
+      ws.onopen = function () {
+        console.log('Websocket connection established')
+        document.body.style='background: #232323';
+        ws.send('Connected')
+      }
+
+      ws.onmessage = function (ev) {
+        let data = JSON.parse(ev.data);
+
+        time.innerText = data.time;
+        pod.innerText = data.pod;
+        node.innerText = data.node;
+        clients.innerText = data.clients;
+      }
+
+      ws.onclose = function () {
+        document.body.style='background: #ccc';
+        time.innerText = 'Websocket connection lost - attempting to establish new connection';
+
+        ws = null;
+        setTimeout(startSocket, 5000);
+      }
+
+      const ping = setInterval(function() {
+        ws.send('ping');
+      }, 1000);
     }
 
-    rel_uri += "//" + loc.host;
-    rel_uri += loc.pathname + "/to/ws";
+    startSocket();
     
-    var ws = new WebSocket(rel_uri);
-
-    ws.onopen = function () {
-      console.log('Websocket is connected...')
-      ws.send('Connected')
-    }
-
-    ws.onmessage = function (ev) {
-      let data = JSON.parse(ev.data);
-
-      time.innerText = data.time;
-      pod.innerText = data.pod;
-      node.innerText = data.node;
-      clients.innerText = data.clients;
-    }
-
-    ws.onclose = function () {
-      document.body.style='background: #ccc';
-      time.innerText = 'Websocket closed...';
-    }
-
-    const ping = setInterval(function() {
-      ws.send('test...');
-    }, 1000);
-
     window.onbeforeunload = function() {
       websocket.onclose = function () {};
       websocket.close();
