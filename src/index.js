@@ -25,6 +25,9 @@ db.init();
 let version = JSON.parse(fs.readFileSync('package.json', 'utf-8')).version;
 
 app.get(basePath + '/', (req, res) => {
+  let now = (new Date()).toUTCString();
+  console.info(`${now}: New request`);
+
 	if(wss.ready && db.ready) {
 		res.status(200).render(__dirname + '/resources/index.ejs', {
 			connections: db.totalConnections + 1,
@@ -32,6 +35,7 @@ app.get(basePath + '/', (req, res) => {
 			version: version
 		});
 	} else {
+    console.error(`${now}: Returning 503 (wss/db unready)`);
 		res.status(STATUS.SERVICE_UNAVAILABLE).send({ status: 'Unavailable' });
 	}
 });
