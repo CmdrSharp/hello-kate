@@ -1,0 +1,18 @@
+{{- if .Values.ingress.istio.virtualservice.deploy }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "hello-kate.fullname" . }}
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - {{ include "hello-kate.fullname" . }}-gateway
+  http:
+  - match:
+    - uri:
+        prefix: {{ .Values.routing.basepath }}
+    route:
+    - destination:
+        host: {{ include "hello-kate.fullname" . }}
+{{- end }}

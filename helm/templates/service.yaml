@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: {{ include "hello-kate.fullname" . }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.service.type }}
   selector:
     app: hello-kate-frontend
     release: {{ .Release.Name }}
   ports:
     - name: http
       protocol: TCP
-      port: 80 # ClusterWide Port
-      targetPort: 8080 # In Pod
+      port: {{ .Values.service.externalPort }} # ClusterWide Port
+      targetPort: {{ .Values.deployment.container.port }} # In Pod

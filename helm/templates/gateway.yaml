@@ -1,0 +1,11 @@
+{{- if .Values.ingress.istio.gateway.deploy }}
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ include "hello-kate.fullname" . }}-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  {{- toYaml .Values.ingress.istio.gateway.servers | nindent 4 }}
+{{- end }}

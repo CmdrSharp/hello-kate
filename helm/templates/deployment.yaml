@@ -36,13 +36,21 @@ spec:
           protocol: TCP
         livenessProbe:
           httpGet:
+            {{- if .Values.ingress.enabled }}
             path: {{ .Values.routing.basepath }}/health
+            {{- else }}
+            path: /health
+            {{- end }}
             port: {{ .Values.deployment.container.port }}
           initialDelaySeconds: 30
           periodSeconds: 30
         readinessProbe:
           httpGet:
+            {{- if .Values.ingress.enabled }}
             path: {{ .Values.routing.basepath }}/health
+            {{- else }}
+            path: /health
+            {{- end }}
             port: {{ .Values.deployment.container.port }}
           initialDelaySeconds: 30
           periodSeconds: 10
@@ -50,7 +58,11 @@ spec:
           {{- toYaml .Values.deployment.resources | nindent 10 }}
         env:
         - name: basepath
+        {{- if .Values.ingress.enabled }}
           value: {{ .Values.routing.basepath }}
+        {{- else }}
+          value: null
+        {{- end }}
         - name: mongodb
           value: {{ .Release.Name }}-mongodb
         - name: mongodb_user

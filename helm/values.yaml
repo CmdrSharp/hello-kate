@@ -1,3 +1,34 @@
+# -----------------------
+#  Service Configuration
+# -----------------------
+service:
+  type: LoadBalancer # Set to ClusterIP if using Ingress
+  externalPort: 80
+
+# -----------------------------------
+#  Ingress and Routing Configuration
+# -----------------------------------
+routing:
+  basepath: &basepath /hello-kate
+
+ingress:
+  enabled: false
+  istio:
+    gateway:
+      deploy: false
+      servers:
+      - port:
+          number: 80
+          name: http
+          protocol: HTTP
+        hosts:
+        - '*'
+    virtualservice:
+      deploy: false
+
+# ------------
+#  Deployment
+# ------------
 deployment:
   replicaCount: 2
   container:
@@ -18,12 +49,6 @@ deployment:
     limits:
       cpu: 100m
       memory: 128Mi
-
-# ---------
-#  Routing
-# ---------
-routing:
-  basepath: &basepath /hello-kate
 
 # --------------
 #  Dependencies
