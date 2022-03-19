@@ -7,7 +7,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - {{ include "hello-kate.fullname" . }}-gateway
+  - {{ .Values.ingress.istio.virtualservice.gateway }}
   http:
   - match:
     - uri:

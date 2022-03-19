@@ -25,6 +25,7 @@ ingress:
         - '*'
     virtualservice:
       deploy: false
+      gateway: hello-kate-gateway
 
 # ------------
 #  Deployment

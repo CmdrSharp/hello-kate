@@ -2,7 +2,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: {{ include "hello-kate.fullname" . }}-gateway
+  name: hello-kate-gateway
 spec:
   selector:
     istio: ingressgateway
