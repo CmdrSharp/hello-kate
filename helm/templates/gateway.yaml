@@ -5,7 +5,7 @@ metadata:
   name: hello-kate-gateway
 spec:
   selector:
-    istio: ingressgateway
+    istio: {{ .Values.ingress.istio.gateway.ingress_name }}
   servers:
   {{- toYaml .Values.ingress.istio.gateway.servers | nindent 4 }}
 {{- end }}

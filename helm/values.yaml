@@ -16,6 +16,7 @@ ingress:
   istio:
     gateway:
       deploy: false
+      ingress_name: ingressgateway
       servers:
       - port:
           number: 80
