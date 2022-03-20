@@ -71,9 +71,10 @@ This can be overridden either using environment variables, or by modifying the `
 - typescript
 
 **Updating the version**
-For simplicity, the `set-version.sh` script updates version tags where necessary.
+For simplicity, the `set-*-version.sh` scripts updates version tags where necessary.
 ```
-./set-version.sh 1.3.1
+./set-app-version.sh 1.3.1
+./set-helm-version.sh 1.5.1
 ```
 
 **To start a build**
