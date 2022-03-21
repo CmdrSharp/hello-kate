@@ -1,0 +1,14 @@
+{{- if .Values.monitoring.grafana_dashboard }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "hello-kate.fullname" . }}-dashboard
+  namespace: {{ .Values.monitoring.namespace }}
+  labels:
+    grafana_dashboard: "1"
+data:
+  {{ include "hello-kate.fullname" . }}.json: |-
+{{ $template := (.Files.Get "files/dashboard.json" | indent 4) }}
+{{- $template := (regexReplaceAll ".uid.+," $template "") -}}
+{{- $template -}}
+{{- end }}

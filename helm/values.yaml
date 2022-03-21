@@ -28,6 +28,13 @@ ingress:
       deploy: false
       gateway: hello-kate-gateway
 
+# --------------
+#  Observability
+# --------------
+monitoring:
+  grafana_dashboard: true
+  namespace: monitoring
+
 # ------------
 #  Deployment
 # ------------
