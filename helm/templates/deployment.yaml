@@ -5,6 +5,7 @@ metadata:
   labels:
     app: hello-kate-frontend
     release: {{ .Release.Name }}
+    version: {{ .Chart.AppVersion }}
 spec:
   replicas: {{ .Values.deployment.replicaCount }}
   selector:
@@ -16,6 +17,7 @@ spec:
       labels:
         app: hello-kate-frontend
         release: {{ .Release.Name }}
+        version: {{ .Chart.AppVersion }}
     spec:
       securityContext:
         runAsUser: {{ .Values.runAsUser }}
