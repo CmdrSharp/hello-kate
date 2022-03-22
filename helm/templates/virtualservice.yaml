@@ -5,7 +5,7 @@ metadata:
   name: {{ include "hello-kate.fullname" . }}
 spec:
   hosts:
-  - "*"
+  {{- toYaml .Values.ingress.istio.virtualservice.hosts | nindent 2 }}
   gateways:
   - {{ .Values.ingress.istio.virtualservice.gateway }}
   http:

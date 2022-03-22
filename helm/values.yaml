@@ -14,19 +14,11 @@ routing:
 ingress:
   enabled: false
   istio:
-    gateway:
-      deploy: false
-      ingress_name: ingressgateway
-      servers:
-      - port:
-          number: 80
-          name: http
-          protocol: HTTP
-        hosts:
-        - '*'
     virtualservice:
       deploy: false
       gateway: hello-kate-gateway
+      hosts:
+      - '*'
 
 # --------------
 #  Observability
