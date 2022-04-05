@@ -47,15 +47,15 @@ helm install hello-kate hello-kate/hello-kate \
 ```
 
 **Deploying with Istio Ingress**
-The Istio Ingress values allow you to have the deployment create a gateway, and a Virtual Service. Please refer to [values.yaml](templates/values.yaml) for a full list of values to set.
+The Istio Ingress values allow you to have the deployment create a Virtual Service. Please refer to [values.yaml](templates/values.yaml) for a full list of values to set.
 
 ```
 helm install hello-kate hello-kate/hello-kate \
 	--set mongodb.persistence.storageClass=your-storageclass-name \
 	--set service.type=ClusterIP \
 	--set ingress.enabled=true \
-	--set ingress.istio.gateway.deploy=true \
 	--set ingress.istio.virtualservice.deploy=true
+	--set ingress.istio.virtualservice.gateway="hello-kate-gateway"
 ```
 
 When deploying with an ingress, the basepath is /hello-kate by default, meaning the application is accessed via http://ingress-ip/hello-kate
