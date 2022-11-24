@@ -8,6 +8,7 @@ Hello Kate is a simple cluster test application for Kubernetes. It displays basi
 - Healthcheck endpoint
 - Attempts to stay alive through SIGTERM while there are active websocket connections
 - Uses a database backend to also test persistant storage
+- Datadog tracing
 
 ## Installation
 Installation is done via Helm.
@@ -32,6 +33,7 @@ To get the assigned LB IP: `kubectl get svc hello-kate`
 
 ## Environment flags
 - `basepath`: basepath to prepend to all endpoints
+- `tracing`: boolean to toggle Datadog tracing (enabled by default)
 
 ## Deploying with an ingress
 Hello Kate has support for deploying with an ingress.

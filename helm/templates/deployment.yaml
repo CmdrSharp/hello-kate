@@ -65,6 +65,8 @@ spec:
         {{- else }}
           value: null
         {{- end }}
+        - name: tracing
+          value: {{ .Values.monitoring.tracing }}
         - name: mongodb
           value: {{ .Release.Name }}-mongodb
         - name: mongodb_user

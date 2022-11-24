@@ -26,6 +26,7 @@ ingress:
 monitoring:
   grafana_dashboard: true
   namespace: monitoring
+  tracing: true
 
 # ------------
 #  Deployment
