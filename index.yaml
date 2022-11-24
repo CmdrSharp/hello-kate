@@ -3,13 +3,27 @@ entries:
   hello-kate:
   - apiVersion: v2
     appVersion: 1.4.0
-    created: "2022-11-24T21:02:09.140288+01:00"
+    created: "2022-11-24T21:40:03.395333+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
       version: ^7.8.10
     description: Cluster Test Application for Kubernetes
-    digest: a8683ed4090635d5a9d277125f20281a5a6d1d7a80197b0210d163b05e32a90f
+    digest: 8c0674a27d2add9ce515a2831e600c2dcb9e9d0f9d8a8490c351e314be98afe8
+    name: hello-kate
+    type: application
+    urls:
+    - https://cmdrsharp.github.io/hello-kate/packages/hello-kate-1.8.1.tgz
+    version: 1.8.1
+  - apiVersion: v2
+    appVersion: 1.4.0
+    created: "2022-11-24T21:40:03.393856+01:00"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.helm.sh/stable
+      version: ^7.8.10
+    description: Cluster Test Application for Kubernetes
+    digest: 26500c3bedf25886461ec1af1eaf6c49aee32a2e5ea265ce503e9c56e936ac62
     name: hello-kate
     type: application
     urls:
@@ -17,7 +31,7 @@ entries:
     version: 1.8.0
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2022-11-24T21:02:09.138409+01:00"
+    created: "2022-11-24T21:40:03.392284+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
@@ -31,7 +45,7 @@ entries:
     version: 1.7.0
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2022-11-24T21:02:09.136601+01:00"
+    created: "2022-11-24T21:40:03.388927+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
@@ -45,7 +59,7 @@ entries:
     version: 1.6.0
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2022-11-24T21:02:09.134537+01:00"
+    created: "2022-11-24T21:40:03.387333+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
@@ -59,7 +73,7 @@ entries:
     version: 1.5.2
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2022-11-24T21:02:09.130435+01:00"
+    created: "2022-11-24T21:40:03.385817+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
@@ -73,7 +87,7 @@ entries:
     version: 1.5.1
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2022-11-24T21:02:09.128071+01:00"
+    created: "2022-11-24T21:40:03.384249+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
@@ -87,7 +101,7 @@ entries:
     version: 1.5.0
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2022-11-24T21:02:09.1258+01:00"
+    created: "2022-11-24T21:40:03.38159+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
@@ -101,7 +115,7 @@ entries:
     version: 1.4.0
   - apiVersion: v2
     appVersion: 1.3.0
-    created: "2022-11-24T21:02:09.123676+01:00"
+    created: "2022-11-24T21:40:03.38001+01:00"
     dependencies:
     - name: mongodb
       repository: https://charts.helm.sh/stable
@@ -113,4 +127,4 @@ entries:
     urls:
     - https://cmdrsharp.github.io/hello-kate/packages/hello-kate-1.3.0.tgz
     version: 1.3.0
-generated: "2022-11-24T21:02:09.12146+01:00"
+generated: "2022-11-24T21:40:03.377854+01:00"
