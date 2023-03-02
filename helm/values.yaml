@@ -1,4 +1,9 @@
 # -----------------------
+#  Application Configuration
+# -----------------------
+message: "Hello Kubernetes!"
+
+# -----------------------
 #  Service Configuration
 # -----------------------
 service:

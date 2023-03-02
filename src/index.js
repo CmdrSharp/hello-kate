@@ -13,11 +13,15 @@ const wss = require('./dist/wss.js');
 const db = require('./db.js');
 
 // Environment Variables
-const basePath = process.env.basepath || '';
+let basePath = process.env.basepath || '';
 const port = process.env.PORT || 8080;
 
+// Ensure we avoid double slashes in the base path
+if (basePath.endsWith("/")) {
+  basePath = basePath.slice(0, -1);
+}
+
 const app = express();
-//app.use(express.static("public"));
 app.use(basePath + '/', express.static(path.join(__dirname, 'public')));
 app.use(cors());
 

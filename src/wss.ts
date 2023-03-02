@@ -36,6 +36,7 @@ module.exports = {
 						"time": `${new Date().toISOString().replace(/^[^T]+T/g, '').slice (0,-5)}`,
 						"pod": process.env.KUBERNETES_POD_NAME || '-',
 						"node": process.env.KUBERNETES_NODE_NAME || '-',
+            "message": process.env.HELLO_MESSAGE || 'Hello Kubernetes!',
 						"clients": [...wss.clients].length
 					}));
 				}

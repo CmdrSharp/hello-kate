@@ -1,6 +1,6 @@
 {
   "name": "hello-kate",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A cluster test application for Kubernetes",
   "main": "index.js",
   "scripts": {

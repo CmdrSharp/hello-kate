@@ -30,6 +30,10 @@
             <th>Number of connected clients:</th>
             <td id="clients">0</td>
           </tr>
+          <tr>
+            <th>Message:</th>
+            <td id="message">Hello Kubernetes!</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -44,6 +48,7 @@
       const pod = document.getElementById('pod');
       const node = document.getElementById('node');
       const clients = document.getElementById('clients');
+      const message = document.getElementById('message');
 
       rel_uri = "ws:";
 
@@ -69,6 +74,7 @@
         pod.innerText = data.pod;
         node.innerText = data.node;
         clients.innerText = data.clients;
+        message.innerText = data.message;
       }
 
       ws.onclose = function () {

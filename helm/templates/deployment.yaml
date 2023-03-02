@@ -77,6 +77,8 @@ spec:
           value: {{ .Values.mongodb.mongodbUsername }}
         - name: mongodb_password
           value: {{ .Values.mongodb.mongodbPassword }}
+        - name: HELLO_MESSAGE
+          value: {{ .Values.message | default "Hello Kubernetes!" }}
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
