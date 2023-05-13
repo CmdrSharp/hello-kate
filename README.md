@@ -1,3 +1,6 @@
+# Hello Kate is replaced by KubePulse
+
+[KubePulse](https://github.com/CmdrSharp/kubepulse) is the latest iteration of this tool, and is much smaller and more resource efficient whilst performing mostly the same basic functions. Development of Hello Kate is therefor stopped and the repository will be archived.
 
 # Hello Kate!
 Hello Kate is a simple cluster test application for Kubernetes. It displays basic information about the node/pod that served the webpage, and also sends the time continuously over a websocket.
